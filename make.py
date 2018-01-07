@@ -16,8 +16,9 @@ data_set = {
     "filenames": None  # list ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
 }
 
-labels = data = filenames = []
-
+labels = []
+data = []
+filenames = []
 
 count = 0
 for infile in glob.glob("./pics/*.jpg"):
