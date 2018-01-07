@@ -9,10 +9,9 @@ from PIL import Image
 
 with open("./example/data_batch_1", 'rb') as file:
     entry = pickle.load(file, encoding='utf-8')
-    # print(entry)
-    # print(entry.keys())
-    # print(entry.get("filenames"))
-    # print(entry.get("batch_label"))  # string
+    # pprint(entry.keys())
+    # pprint(entry.get("filenames"))
+    # pprint(entry.get("batch_label"))  # string
     # pprint(entry.get("data"))
     pprint(entry)
     random_num = random.randint(0, len(entry.get("data")))
