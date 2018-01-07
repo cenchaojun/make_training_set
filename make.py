@@ -5,6 +5,7 @@
 import os
 import glob
 import pickle
+from pprint import pprint
 from PIL import Image
 import numpy as np
 
@@ -54,7 +55,7 @@ for infile in glob.glob("./pics/*.jpg"):
 
 data_set.update({"labels": labels, "data": data, "filenames": filenames})
 
-
+pprint(data_set)
 with open('./example/data_batch_1', 'wb') as file:
     pickle.dump(data_set, file)
 
