@@ -13,4 +13,5 @@ with open("./example/data_batch_1", 'rb') as file:
     # print(entry.get("batch_label"))  # string
     print(entry.get("data"))
     data = entry.get("data")[0].reshape(3, 70, 160).transpose([1, 2, 0])
+    print("标签: {}".format(entry.get("labels")[0]))
     Image.fromarray(data, mode="RGB").show()
