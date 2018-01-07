@@ -47,7 +47,7 @@ for infile in glob.glob("./pics/*.jpg"):
 data_set.update({"labels": labels, "data": data, "filenames": filenames})
 
 
-with open('./data_batch_1', 'wb') as file:
+with open('./example/data_batch_1', 'wb') as file:
     pickle.dump(data_set, file)
 
 
