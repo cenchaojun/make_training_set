@@ -16,25 +16,32 @@ data_set = {
     "filenames": None  # list ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
 }
 
-labels = []
-data = []
-filenames = []
+labels = data = filenames = []
 
 
+count = 0
 for infile in glob.glob("./pics/*.jpg"):
     filename = os.path.basename(infile)
     file, ext = os.path.splitext(infile)
 
-    Img = Image.open(infile)
-    width = Img.size[0]
-    height = Img.size[1]
+    try:
+        image = Image.open(infile)
+    except OSError:
+        print("图片错误")
+        continue
+    count += 1
+    if count > 100000:
+        break
+
+    width, height = image.size
+
     label = str(filename).split("_")[0]
 
-    # print(Img.mode)   # RGBA A Alpha的色彩空间，也就是透明度/不透明度
-    if Img.mode != "RGB":
-        Img = Img.convert("RGB")
+    # print(image.mode)   # RGBA A Alpha的色彩空间，也就是透明度/不透明度
+    if image.mode != "RGB":
+        image = image.convert("RGB")
 
-    r, g, b = Img.split()
+    r, g, b = image.split()
     r_array = np.array(r).reshape([160 * 70])
     g_array = np.array(g).reshape([160 * 70])
     b_array = np.array(b).reshape([160 * 70])
