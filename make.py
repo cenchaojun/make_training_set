@@ -42,9 +42,9 @@ for infile in glob.glob("./pics/*.jpg"):
         image = image.convert("RGB")
 
     r, g, b = image.split()
-    r_array = np.array(r).reshape([160 * 70])
-    g_array = np.array(g).reshape([160 * 70])
-    b_array = np.array(b).reshape([160 * 70])
+    r_array = np.array(r).reshape([width * height])
+    g_array = np.array(g).reshape([width * height])
+    b_array = np.array(b).reshape([width * height])
     merge_array = np.concatenate((r_array, g_array, b_array))
     data.append(merge_array)
     labels.append(label)
