@@ -9,6 +9,9 @@ from pprint import pprint
 from PIL import Image
 import numpy as np
 
+# 目标分别率 长*宽
+target_pixel = (160, 70)
+
 
 data_set = {
     "batch_label": "ten pictures form http://shixin.court.gov.cn",  # description
@@ -31,11 +34,16 @@ for infile in glob.glob("./pics/*.jpg"):
     except OSError:
         print("图片错误")
         continue
-    count += 1
-    if count > 100000:
-        break
+    else:
+        count += 1
+        if count > 100000:
+            break
 
     width, height = image.size
+
+    if image.size != target_pixel:
+        print("分辨率不同")
+        continue
 
     label = str(filename).split("_")[0]
 
