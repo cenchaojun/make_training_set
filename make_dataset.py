@@ -5,9 +5,12 @@
 import os
 import glob
 import pickle
+import string
 from pprint import pprint
 from PIL import Image
 import numpy as np
+
+characters = string.digits + string.ascii_lowercase
 
 # 目标分别率 长*宽
 target_pixel = (160, 70)
@@ -15,9 +18,10 @@ target_pixel = (160, 70)
 
 data_set = {
     "batch_label": "ten pictures form http://shixin.court.gov.cn",  # description
-    "labels": None,    # list
-    "data": None,      # <class 'numpy.ndarray'>
-    "filenames": None  # list ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
+    "labels": None,     # list
+    "data": None,       # <class 'numpy.ndarray'>
+    "filenames": None,  # list ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
+    "shape": (),        #
 }
 
 labels = []
@@ -28,6 +32,7 @@ count = 0
 for infile in glob.glob("./pics/*.jpg"):
     filename = os.path.basename(infile)
     file, ext = os.path.splitext(infile)
+    y = np.zeros([4, len(characters)], dtype=np.uint8)
 
     try:
         image = Image.open(infile)
@@ -36,8 +41,8 @@ for infile in glob.glob("./pics/*.jpg"):
         continue
     else:
         count += 1
-        if count > 100000:
-            break
+    if count > 10000:
+        break
 
     width, height = image.size
 
@@ -51,13 +56,13 @@ for infile in glob.glob("./pics/*.jpg"):
     if image.mode != "RGB":
         image = image.convert("RGB")
 
-    r, g, b = image.split()
-    r_array = np.array(r).reshape([width * height])
-    g_array = np.array(g).reshape([width * height])
-    b_array = np.array(b).reshape([width * height])
-    merge_array = np.concatenate((r_array, g_array, b_array))
-    data.append(merge_array)
-    labels.append(label)
+    shape = np.array(image).shape
+    data_set.update({"shape": shape})
+    data.append(np.array(image).reshape([shape[0] * shape[1] * shape[2]]))
+    for j, ch in enumerate(label):
+        y[j][characters.find(ch)] = 1
+
+    labels.append(y)
     filenames.append(str(filename))
 
 
