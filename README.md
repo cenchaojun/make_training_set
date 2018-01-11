@@ -9,9 +9,10 @@
 ```python
 data_set = {
     "batch_label": "ten pictures form http://shixin.court.gov.cn",  # 关于对数据集的描述信息
-    "labels": None,    # 图片标签信息 python 列表
-    "data": None,      # 每一张图片转换成RGB三个矩阵, 每个矩阵展平, 然后按RGB的顺序拼接起一个 3*width*height 长度的向量.
-    "filenames": None  # 图片文件名 python 列表
+    "labels": None,     # 图片标签信息 python 列表
+    "data": None,       # 每一张图片转换成RGB三个矩阵, 每个矩阵展平, 然后按RGB的顺序拼接起一个 3*width*height 长度的向量.
+    "filenames": None,  # 图片文件名 python 列表
+    "shape": ()         # 图片维度信息
 }
 
 ```
