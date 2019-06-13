@@ -1,27 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
+# Desc: 制作数据集
 
-import os
 import glob
+import os
 import pickle
 import string
 from pprint import pprint
-from PIL import Image
+
 import numpy as np
+from PIL import Image
 
 characters = string.digits + string.ascii_lowercase
 
 # 目标分别率 长*宽
 target_pixel = (160, 70)
 
-
 data_set = {
     "batch_label": "ten pictures form http://shixin.court.gov.cn",  # description
-    "labels": None,     # list
-    "data": None,       # <class 'numpy.ndarray'>
+    "labels": None,  # list
+    "data": None,  # <class 'numpy.ndarray'>
     "filenames": None,  # list ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
-    "shape": (),        #
+    "shape": (),  #
 }
 
 labels = []
@@ -65,12 +66,8 @@ for infile in glob.glob("./pics/*.jpg"):
     labels.append(y)
     filenames.append(str(filename))
 
-
 data_set.update({"labels": labels, "data": data, "filenames": filenames})
 
 pprint(data_set)
 with open('./example/data_batch_1', 'wb') as file:
     pickle.dump(data_set, file)
-
-
-

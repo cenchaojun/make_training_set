@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
+# Desc: 加载数据集
 
-import random
 import pickle
+import random
 from pprint import pprint
+
 from PIL import Image
 
 with open("./example/data_batch_1", 'rb') as file:
