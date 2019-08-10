@@ -9,7 +9,7 @@ from pprint import pprint
 
 from PIL import Image
 
-with open("./example/data_batch_1", 'rb') as f:
+with open("./output/data_batch_1", 'rb') as f:
     entry = pickle.load(f, encoding='utf-8')
     pprint(entry)
     shape = entry.get("shape")
