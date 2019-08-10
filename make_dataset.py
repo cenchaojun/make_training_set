@@ -14,14 +14,14 @@ from PIL import Image
 
 characters = string.digits + string.ascii_lowercase
 
-# 目标分别率 长*宽
+# 目标图片分辨率 长*宽
 target_pixel = (160, 70)
 
 data_set = {
     "batch_label": "ten pictures form http://shixin.court.gov.cn",  # description
-    "labels": None,  # list
-    "data": None,  # <class 'numpy.ndarray'>
-    "filenames": None,  # list ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
+    "labels": None,  # 由图片标签组成的列表 ['abcd', 'defg',]
+    "data": None,  # 由 numpy.ndarray 组成的列表
+    "filenames": None,  # 由文件名组成的列表 ['leptodactylus_pentadactylus_s_000004.png', 'camion_s_000148.png',]
     "shape": (),  #
 }
 
@@ -38,17 +38,18 @@ for infile in glob.glob("./pics/*.jpg"):
     try:
         image = Image.open(infile)
     except OSError:
-        print("图片错误")
+        print("图片错误.")
         continue
     else:
         count += 1
+
     if count > 10000:
         break
 
     width, height = image.size
 
     if image.size != target_pixel:
-        print("分辨率不同")
+        print("分辨率不同.")
         continue
 
     label = str(filename).split("_")[0]
@@ -69,5 +70,5 @@ for infile in glob.glob("./pics/*.jpg"):
 data_set.update({"labels": labels, "data": data, "filenames": filenames})
 
 pprint(data_set)
-with open('./example/data_batch_1', 'wb') as file:
-    pickle.dump(data_set, file)
+with open('./example/data_batch_1', 'wb') as f:
+    pickle.dump(data_set, f)

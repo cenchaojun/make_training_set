@@ -1,8 +1,9 @@
 # make_training_set
 
-制作类似[CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)的数据集.
+制作类似[CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)、[mnist](http://yann.lecun.com/exdb/mnist/)的数据集.
 
-原理：将组织好的数据结构 使用python的[pickle](https://docs.python.org/3/library/pickle.html)模块 dump到一个二进制文件里.
+原理：将组织好的数据结构 使用python的[pickle](https://docs.python.org/3/library/pickle.html)模块 `pickle.dump`到一个二进制文件里.
+使用的时候，使用`pickle.load()`进行加载.
 
 数据结构:
 ```python
@@ -15,7 +16,7 @@ data_set = {
 }
 ```
 
-使用python3.7版本
+使用python3版本
 
 感谢[Jimmy](http://blog.csdn.net/qq_32166627/article/details/68946809)的思路.
 
