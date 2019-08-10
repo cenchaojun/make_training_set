@@ -2,7 +2,7 @@
 
 制作类似[CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)、[mnist](http://yann.lecun.com/exdb/mnist/)的数据集.
 
-原理：将组织好的数据结构 使用python的[pickle](https://docs.python.org/3/library/pickle.html)模块 `pickle.dump`到一个二进制文件里.
+原理：将组织好的数据结构 使用python的[pickle](https://docs.python.org/3/library/pickle.html)模块 `pickle.dump()`到一个二进制文件里.
 使用的时候，使用`pickle.load()`进行加载.
 
 数据结构:
